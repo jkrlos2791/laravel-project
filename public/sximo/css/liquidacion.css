@@ -1,0 +1,50 @@
+.general{
+    font-size: 12px;
+}
+.pagina{
+    overflow: hidden;
+    page-break-after: always;
+}
+.titulo{
+    font-weight: bold;
+	text-align: center;
+	text-decoration: underline;
+}
+.descripcion-superior{
+    background-color: #A9F5E1;
+	border: 2px solid #000000;
+}
+.seccion{
+	font-weight: bold;
+    background-color: #045FB4;
+	color: #FFFFFF;
+	border: 2px solid #000000;
+}
+.descripcion-inferior{
+
+}
+
+.negrita{
+    font-weight: bold;
+}
+.derecha{
+    text-align: right;
+}
+.centro{
+    text-align: center;
+}
+.titulo{
+    font-weight: bold;
+    text-align: center;
+}
+.importe{
+    text-align: right;
+}
+
+.subrayado {
+ text-decoration: underline; 
+ }
+ .subrayado_arriba {
+ text-decoration: overline underline ; 
+ }
+

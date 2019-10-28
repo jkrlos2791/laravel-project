@@ -1,0 +1,138 @@
+
+
+<?php $__env->startSection('content'); ?>
+<div class="page-content row">
+    <!-- Page header -->
+
+	 
+	 
+ 	<div class="page-content-wrapper m-t">   
+
+<div class="sbox ">
+	<div class="sbox-title">
+		<div class="sbox-tools pull-left" >
+	   		<a href="<?php echo e(url('gratificacion?return='.$return)); ?>" class="tips btn btn-xs btn-default" title="<?php echo e(Lang::get('core.btn_back')); ?>"><i class="fa  fa-arrow-left"></i></a>
+			<?php if($access['is_add'] ==1): ?>
+	   		<a href="<?php echo e(url('gratificacion/update/'.$id.'?return='.$return)); ?>" class="tips btn btn-xs btn-default" title="<?php echo e(Lang::get('core.btn_edit')); ?>"><i class="fa  fa-pencil"></i></a>
+			<?php endif; ?> 
+					
+		</div>	
+
+		<div class="sbox-tools " >
+			<a href="<?php echo e(($prevnext['prev'] != '' ? url('gratificacion/show/'.$prevnext['prev'].'?return='.$return ) : '#')); ?>" class="tips btn btn-xs btn-default"><i class="fa fa-arrow-left"></i>  </a>	
+			<a href="<?php echo e(($prevnext['next'] != '' ? url('gratificacion/show/'.$prevnext['next'].'?return='.$return ) : '#')); ?>" class="tips btn btn-xs btn-default"> <i class="fa fa-arrow-right"></i>  </a>
+			<?php if(Session::get('gid') ==1): ?>
+				<a href="<?php echo e(URL::to('sximo/module/config/'.$pageModule)); ?>" class="tips btn btn-xs btn-default" title=" <?php echo e(Lang::get('core.btn_config')); ?>" ><i class="fa  fa-ellipsis-v"></i></a>
+			<?php endif; ?> 			
+		</div>
+
+
+	</div>
+	<div class="sbox-content" > 	
+
+		<table class="table table-striped table-bordered" >
+			<tbody>	
+		
+					<tr>
+						<td width='30%' class='label-view text-right'>Gratificacion Id</td>
+						<td><?php echo e($row->gratificacion_id); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Id Trabajador</td>
+						<td><?php echo e($row->id_trabajador); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Periodo Id</td>
+						<td><?php echo e($row->periodo_id); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Haber Basico</td>
+						<td><?php echo e($row->haber_basico); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Asig Fam</td>
+						<td><?php echo e($row->asig_fam); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Pro Rem Var</td>
+						<td><?php echo e($row->pro_rem_var); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Total Rem Com</td>
+						<td><?php echo e($row->total_rem_com); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Ts Meses</td>
+						<td><?php echo e($row->ts_meses); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Ts Dias</td>
+						<td><?php echo e($row->ts_dias); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Faltas</td>
+						<td><?php echo e($row->faltas); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Tc Meses</td>
+						<td><?php echo e($row->tc_meses); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Tc Dias</td>
+						<td><?php echo e($row->tc_dias); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Grati 30334</td>
+						<td><?php echo e($row->grati_30334); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Boni 30334</td>
+						<td><?php echo e($row->boni_30334); ?> </td>
+						
+					</tr>
+				
+					<tr>
+						<td width='30%' class='label-view text-right'>Total Grati</td>
+						<td><?php echo e($row->total_grati); ?> </td>
+						
+					</tr>
+				
+			</tbody>	
+		</table>   
+
+	 
+	
+	</div>
+</div>	
+
+	</div>
+</div>
+	  
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.app', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

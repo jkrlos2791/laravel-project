@@ -1,0 +1,42 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 6px 0 6px 0;
+}
+table, th, td {
+    border: 0.8px solid black;
+    text-align: center;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+th {
+    background-color: #0B3861;
+    color: white;
+}
+.letra{
+    font-size: 10px;
+}
+.negrita{
+    font-weight: bold;
+}
+.izquierda{
+    text-align: left;
+}
+.derecha{
+    text-align: right;
+}
+.centro{
+    text-align: center;
+}
+.titulo{
+    font-weight: bold;
+    text-align: center;
+}
+.importe{
+    text-align: right;
+}
+.pagina {
+    overflow: hidden;
+    page-break-after: always;
+}

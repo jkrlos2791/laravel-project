@@ -1,0 +1,122 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> <?php echo e(CNF_APPNAME); ?> </title>
+    <link rel="shortcut icon" href="<?php echo e(asset('favicon.ico')); ?>" type="image/x-icon">	
+	<link href="<?php echo e(asset('jl/bootstrap4/css/bootstrap.min.css')); ?>" rel="stylesheet">
+	<link href="<?php echo e(asset('jl/datatables/datatables.min.css')); ?>" rel="stylesheet"> 
+	<link href="<?php echo e(asset('jl/jqueryui/jquery-ui-themes-1.12.1/themes/base/jquery-ui.css')); ?>" rel="stylesheet"> 
+	<link href="<?php echo e(asset('jl/select24/select2-4.0.6-rc.1/dist/css/select2.min.css')); ?>" rel="stylesheet">
+	<link href="<?php echo e(asset('jl/fontawesome5/fontawesome-all.min.css')); ?>" rel="stylesheet">
+	<link href="<?php echo e(asset('jl/core/styles/estilo1.css')); ?>" rel="stylesheet">
+	<link href="<?php echo e(asset('jl/pace/pace-theme-loading-bar.css')); ?>" rel="stylesheet">
+	<link href="<?php echo e(asset('jl/dropzone/dropzone.min.css')); ?>" rel="stylesheet">	
+	<script type="text/javascript" src="<?php echo e(asset('jl/jquery3/jquery-3.3.1.min.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('jl/bootstrap4/js/bootstrap.min.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('jl/datatables/datatables.min.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('jl/jqueryui/jquery-ui-1.12.1/jquery-ui.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('jl/select24/select2-4.0.6-rc.1/dist/js/select2.min.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('jl/sweetalert/sweetalert.min.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('jl/maskmoney/jquery.maskMoney.min.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('jl/accounting/accounting.min.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('jl/pace/pace.min.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('jl/dropzone/dropzone.min.js')); ?>"></script>
+	<script type="text/javascript" src="<?php echo e(asset('jl/chart/Chart.js')); ?>"></script>
+	<style>
+		.flotante {
+			display:scroll;
+			position:fixed;
+			bottom:300px;
+			right:0px;
+			z-index:1;
+		}		
+		#contents {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="contents">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">JL planilla</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+				<?php if(Session::get('periodo_id')): ?>
+                	<li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownEmpleados" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-clipboard-list"></i> Planilla
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="<?php echo e(url('planillageneracion')); ?>"><i class="fas fa-eye"></i> Mostrar </a>
+                            <a id="calcularPlanilla" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-calculator"></i> Calcular </a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+    					<a class="nav-link" href="<?php echo e(url('editable')); ?>"><i class="fas fa-arrows-alt-v"></i> Conceptos y Afectaciones</a>
+                    </li>
+				<?php endif; ?>
+                <?php if(Session::get('empresa')): ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownEmpleados" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-users"></i> Empleados
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a id="buscarEmpleado" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-search"></i> Buscar </a>
+                            <a id="nuevoEmpleado" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-plus-square"></i> Nuevo </a>
+                        </div>
+                    </li>
+				<?php endif; ?>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="dropdownEmpresas" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-building"></i> Empresas
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a id="buscarEmpresa" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-search"></i> Buscar </a>
+                        <a id="nuevoEmpresa" class="dropdown-item" href="javascript:void(0)"><i class="fas fa-plus-square"></i> Nuevo </a>
+                    </div>
+                </li>
+            </ul>
+            <div class="dropdown">
+                <button class="btn btn-success my-2 my-sm-0" type="button" id="entrarEmpresa" aria-haspopup="true" aria-expanded="false">
+    				<?php if(Session::get('empresa')): ?>
+    					<?php echo e(Session::get('empresa')); ?> - <?php echo e(Session::get('mes')); ?> <?php echo e(Session::get('anio')); ?> 
+    				<?php else: ?>
+    				    Iniciar empresa
+    				<?php endif; ?>
+    			</button>
+            </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-user"></i> Bienvenido, <b><?php echo e(Session::get('fid')); ?> </b> 
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="<?php echo e(URL::to('configuracion')); ?>"><i class="fas fa-cogs"></i>  Configuracion </a>
+                        <a class="dropdown-item" href="http://planilla.asecoint.com.pe/uploads/formatos/Manual.pdf" target="_blank"><i class="fas fa-file-pdf"></i> 
+                        Manual </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="<?php echo e(URL::to('user/logout')); ?>"><i class="fas fa-sign-out-alt"></i> <?php echo e(Lang::get('core.m_logout')); ?></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <main role="main" class="container-fluid">
+        <input id="hiddenEmpresa" name="hiddenEmpresa" type="hidden" value="<?php echo e(Session::get('empresa')); ?>" />
+        <input id="hiddenPeriodo" name="hiddenPeriodo" type="hidden" value="<?php echo e(Session::get('periodo_id')); ?>" />
+        <?php echo $__env->yieldContent('content'); ?>	
+    </main>
+	<?php echo $__env->make('empleado/form2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('empresa/form2', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('empresa/formingreso', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<?php echo $__env->make('planillageneracion/formcalculo', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	</div>
+	<script type="text/javascript" src="<?php echo e(asset('jl/core/app.js')); ?>"></script>	
+</body> 
+</html>

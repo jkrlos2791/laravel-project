@@ -1,0 +1,23 @@
+.letra{
+    font-size: 11px;
+}
+.negrita{
+    font-weight: bold;
+}
+.derecha{
+    text-align: right;
+}
+.centro{
+    text-align: center;
+}
+.titulo{
+    font-weight: bold;
+    text-align: center;
+}
+.importe{
+    text-align: right;
+}
+.pagina {
+    overflow: hidden;
+    page-break-after: always;
+}
